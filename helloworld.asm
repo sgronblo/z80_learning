@@ -14,18 +14,20 @@ RomInit
 
 Start
     call Init32
-    ld a, (HelloString)
+    ld hl, HelloString ; load address of HelloString into address register
     call PrintString
+    call ChGet
     ret
 
 PrintString
+    ld a, (hl) ; load char from memory address
     cp 0 ; compare current char to NIL
     jp z, PrintStringEnd ; if it was NIL go to end
     call ChPut ; print the current char
-    inc a ; go to next char
-    jp PrintString ; go back to first line
+    inc hl ; go to next char
+    jp PrintString ; go back to first char
 PrintStringEnd
     ret
 
 HelloString
-    dc "Hello world\n"
+    dz "Hello worlds"
