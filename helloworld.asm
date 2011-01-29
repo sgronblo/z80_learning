@@ -14,9 +14,20 @@ RomInit
 
 Start
     call Init32
+    call ClearScreen
+    call Run
+    call ClearScreen
+    ret
+
+Run
     ld hl, HelloString ; load address of HelloString into address register
     call PrintString
     call ChGet
+    ret
+
+ClearScreen
+    xor A
+    call 00C3h
     ret
 
 PrintString
