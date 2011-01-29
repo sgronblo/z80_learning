@@ -20,9 +20,10 @@ Start
 
 PrintString
     cp 0 ; compare current char to NIL
-    jp z PrintStringEnd ; if it was NIL go to end
+    jp z, PrintStringEnd ; if it was NIL go to end
     call ChPut ; print the current char
     inc a ; go to next char
+    jp PrintString ; go back to first line
 PrintStringEnd
     ret
 
